@@ -1,16 +1,15 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 // $Id$
 
+#include <cmath>
+
 #include "raytrace.h"
 #include <filesystem_tools.h>
 #include <cmdlib.h>
 #include <stdio.h>
 
-static bool SameSign(float a, float b)
-{
-	int32 aa=*((int *) &a);
-	int32 bb=*((int *) &b);
-	return ((aa^bb)&0x80000000)==0;
+static bool SameSign(float a, float b) {
+    return std::signbit(a) == std::signbit(b);
 }
 
 int FourRays::CalculateDirectionSignMask(void) const
